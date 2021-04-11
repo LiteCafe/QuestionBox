@@ -32,7 +32,7 @@ $code=$_GET['complete'];
 		</div>
 		<div class="mdui-drawer" id="sidebar">
 			<div class="mdui-list" mdui-collapse="{accordion:true}">
-				<a href="./" class="mdui-list-item mdui-ripple">
+				<a href="./" class="mdui-list-item  mdui-ripple">
 					<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">
 						&#xe88a;
 					</i>
@@ -56,6 +56,15 @@ $code=$_GET['complete'];
 						查看问题
 					</div>
 				</a>
+				
+				<a href='./admin' class="mdui-list-item mdui-ripple">
+					<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-teal" >
+						&#xe853;
+					</i>
+					<div class="mdui-list-item-content">
+						登录面板
+					</div>
+				</a>
 			</div>
 		</div>
 		</div>
@@ -64,12 +73,12 @@ $code=$_GET['complete'];
 				添加语句
 			</h1>
 			<div class="mdui-dialog" id="none">
-    <div class="mdui-dialog-title">无效操作</div>
-    <div class="mdui-dialog-content">请在列表中查看你感兴趣的问题</div>
-    <div class="mdui-dialog-actions">
-      <a href ='./'><button class="mdui-btn mdui-ripple">确定</button></a>
-    </div>
-  </div>
+                <div class="mdui-dialog-title">无效操作</div>
+                <div class="mdui-dialog-content">请在列表中查看你感兴趣的问题</div>
+                <div class="mdui-dialog-actions">
+                  <a href ='./'><button class="mdui-btn mdui-ripple">确定</button></a>
+                </div>
+            </div>
 			<?php
 			    if($code)
 			    {

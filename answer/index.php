@@ -84,6 +84,15 @@ mysqli_close($con);
 					</div>
 				</a>
 				
+				<a href='../admin' class="mdui-list-item mdui-ripple">
+					<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-teal" >
+						&#xe853;
+					</i>
+					<div class="mdui-list-item-content">
+						登录面板
+					</div>
+				</a>
+				
 			</div>
 		</div>
 		</div>

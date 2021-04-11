@@ -1,4 +1,5 @@
 <?php
+include 'check.php';
 include '../config.php';
 $textsql = $dbprefix.'questions';
 

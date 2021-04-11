@@ -53,18 +53,26 @@
 						查看问题
 					</div>
 				</a>
-
+				
+				<a href='./admin' class="mdui-list-item mdui-ripple">
+					<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-teal" >
+						&#xe853;
+					</i>
+					<div class="mdui-list-item-content">
+						管理面板
+					</div>
+				</a>
 
 			</div>
 		</div>
 		<div class="mdui-container mdui-typo">
 		      <div class="mdui-dialog" id="none">
-    <div class="mdui-dialog-title">无效操作</div>
-    <div class="mdui-dialog-content">请在列表中查看你感兴趣的问题</div>
-    <div class="mdui-dialog-actions">
-      <button class="mdui-btn mdui-ripple" mdui-dialog-close>确定</button>
-    </div>
-  </div>
+                    <div class="mdui-dialog-title">无效操作</div>
+                    <div class="mdui-dialog-content">请在列表中查看你感兴趣的问题</div>
+                    <div class="mdui-dialog-actions">
+                      <button class="mdui-btn mdui-ripple" mdui-dialog-close>确定</button>
+                    </div>
+                </div>
 			<h1 class="mdui-text-color-theme">
 				语句列表
 			</h1>

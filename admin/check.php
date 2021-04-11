@@ -1,10 +1,10 @@
 <?php
-    session_start();
+session_start();
 //  判断是否登陆
-if (isset($_SESSION["asklogin"]) && $_SESSION["asklogin"] == true) {
+if (isset($_SESSION["login"]) && $_SESSION["login"] === true) {
 
 } else {
-    $_SESSION["asklogin"] = false;
-    header('Location ../');
+    $_SESSION["login"] = false;
+    header('Location: ../login.php');
 }
 ?>

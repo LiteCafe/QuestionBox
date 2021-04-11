@@ -1,3 +1,4 @@
+<?php include './check.php'?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -30,13 +31,32 @@
 		<div class="mdui-drawer" id="sidebar">
 			<div class="mdui-list" mdui-collapse="{accordion:true}">
 				<a href="./" class="mdui-list-item mdui-list-item-active mdui-ripple">
-					<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">
-						&#xe88a;
+					<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-teal">
+						&#xe22b;
 					</i>
 					<div class="mdui-list-item-content">
 						回答提问
 					</div>
 				</a>
+				
+				<a href="./logout.php" class="mdui-list-item  mdui-ripple">
+					<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-orange">
+						&#xe0b8;
+					</i>
+					<div class="mdui-list-item-content">
+						登出
+					</div>
+				</a>
+				
+				<a href="../" class="mdui-list-item mdui-ripple">
+					<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">
+						&#xe88a;
+					</i>
+					<div class="mdui-list-item-content">
+						主页
+					</div>
+				</a>
+				
 			</div>
 		</div>
 		<div class="mdui-container mdui-typo">
