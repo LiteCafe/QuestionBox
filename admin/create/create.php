@@ -1,6 +1,5 @@
-
 <?php
-include '../config.php';
+include '../../config/database.php';
 $anony=$_POST['anony'];
 if($anony=='on')
     $creator='匿名者';

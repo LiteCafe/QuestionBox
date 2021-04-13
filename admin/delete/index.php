@@ -1,5 +1,4 @@
 <?php
-include '../../config/siteinfo.php';
 session_start();
 //  判断是否登陆
 if (isset($_SESSION["login"]) && $_SESSION["login"] === true) {
@@ -28,13 +27,11 @@ else
 }
 
 }
-else $asked = '20';
-}else {
+} else {
     $_SESSION["login"] = false;
     header('Location: ../../login.php');
 }
-
-
+include '../../config/siteinfo.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,7 +39,7 @@ else $asked = '20';
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
 		<title>
-			<?php echo $sitename;?> | 回答
+			<?php echo $sitename;?> | 删除确认
 		</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.2/dist/css/mdui.min.css">
 		<meta name="theme-color" content="#ffffff">
@@ -65,7 +62,7 @@ else $asked = '20';
 					</i>
 				</button>
 				<a href="./" class="mdui-typo-headline">
-					<?php echo $sitename;?> | 回答
+					<?php echo $sitename;?>| 删除确认
 				</a>
 				<div class="mdui-toolbar-spacer">
 				</div>
@@ -78,7 +75,7 @@ else $asked = '20';
 						&#xe871;
 					</i>
 					<div class="mdui-list-item-content">
-						回答提问
+						删除提问
 					</div>
 				</a>
 				
@@ -126,23 +123,19 @@ else $asked = '20';
 						主页
 					</div>
 				</a>
+				
 				<a href='//github.com/ImJingLan/QuestionBox' class="mdui-list-item mdui-ripple"><b>Powered By QuestionBox</b></a>
 			</div>
 		</div>
 		</div>
 		<div class="mdui-container mdui-typo">
 			<h1 class="mdui-text-color-theme">
-				回答
+				你确定要删除吗？删除后将无法挽回
 			</h1>
-			<?php
-			    if($code)
-			    {
-			        echo("<script>mdui.alert('问题回答成功', '回答成功');</script>");
-			    }
-			?>
+
 			<?php if($asked == '1')
 			echo ('
-			<form class="content database" action="./answer.php" method="post">
+			<form class="content database" action="./delete.php" method="post">
     			<div class="mdui-textfield mdui-textfield-floating-label" style ="display:none">
                   <label class="mdui-textfield-label"></label>
                   <input class="mdui-textfield-input" value="'.$qid.'" name="qid"/>
@@ -160,10 +153,10 @@ else $asked = '20';
                 
                 <div class="mdui-textfield mdui-textfield-floating-label">
                   <label class="mdui-textfield-label">回答</label>
-                  <input class="mdui-textfield-input" value="'.$answer.'" name="answer"/>
+                  <input class="mdui-textfield-input" value="'.$answer.'" name="answer" disabled/>
                 </div>
                 
-    			<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">回答</button>
+    			<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">删除</button>
 			</form>');
 			if($asked == '20')echo ("<h2>抱歉,你没有提供问题ID</h2>");
 			if($asked !='1' && $asked !='20')

@@ -1,40 +1,7 @@
 <?php
 include '../../config/siteinfo.php';
+$code=$_GET['complete'];
 session_start();
-//  判断是否登陆
-if (isset($_SESSION["login"]) && $_SESSION["login"] === true) {
-$qid=$_GET['q'];
-$code = $_GET['complete'];
-include '../../config/database.php';
-$textsql = $dbprefix.'questions';
-
-$con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
-if($qid)
-{
-    
-$sql = "SELECT * FROM ".$textsql.' WHERE id='.$qid;
-$result = mysqli_query($con, $sql);
-if (mysqli_num_rows($result) > 0) {
-    while($row = mysqli_fetch_assoc($result)) {
-        
-        $creator = $row['creator'];
-        $question = $row['question'];
-        $answer = $row['answer'];
-        $asked = '1';
-    }
-} 
-else 
-{
-}
-
-}
-else $asked = '20';
-}else {
-    $_SESSION["login"] = false;
-    header('Location: ../../login.php');
-}
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,7 +9,7 @@ else $asked = '20';
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
 		<title>
-			<?php echo $sitename;?> | 回答
+			<?php echo $sitename;?> | 提问
 		</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.2/dist/css/mdui.min.css">
 		<meta name="theme-color" content="#ffffff">
@@ -65,7 +32,7 @@ else $asked = '20';
 					</i>
 				</button>
 				<a href="./" class="mdui-typo-headline">
-					<?php echo $sitename;?> | 回答
+					<?php echo $sitename;?> | 用户设置
 				</a>
 				<div class="mdui-toolbar-spacer">
 				</div>
@@ -73,16 +40,16 @@ else $asked = '20';
 		</div>
 		<div class="mdui-drawer" id="sidebar">
 			<div class="mdui-list" mdui-collapse="{accordion:true}">
-				<a href="../" class="mdui-list-item mdui-list-item-active mdui-ripple">
+				<a href="../" class="mdui-list-item mdui-ripple">
 					<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">
 						&#xe871;
 					</i>
 					<div class="mdui-list-item-content">
-						回答提问
+						管理
 					</div>
 				</a>
 				
-				<a href="../create" class="mdui-list-item mdui-ripple">
+				<a href="./" class="mdui-list-item mdui-ripple">
 					<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">
 						&#xe3c9;
 					</i>
@@ -100,7 +67,7 @@ else $asked = '20';
 					</div>
 				</a>
 				
-				<a href="../account" class="mdui-list-item mdui-ripple">
+				<a href="../account" class="mdui-list-item mdui-list-item-active mdui-ripple">
 					<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-indigo">
 						&#xe7fd;
 					</i>
@@ -132,43 +99,38 @@ else $asked = '20';
 		</div>
 		<div class="mdui-container mdui-typo">
 			<h1 class="mdui-text-color-theme">
-				回答
+				账户设置
 			</h1>
-			<?php
-			    if($code)
-			    {
-			        echo("<script>mdui.alert('问题回答成功', '回答成功');</script>");
-			    }
-			?>
-			<?php if($asked == '1')
-			echo ('
-			<form class="content database" action="./answer.php" method="post">
-    			<div class="mdui-textfield mdui-textfield-floating-label" style ="display:none">
-                  <label class="mdui-textfield-label"></label>
-                  <input class="mdui-textfield-input" value="'.$qid.'" name="qid"/>
+
+			<form class="content database" action="./account.php" method="post">
+
+                <div class="mdui-textfield mdui-textfield-floating-label" style="display:none">
+                  <label class="mdui-textfield-label">OLDUSERNAME</label>
+                  <input class="mdui-textfield-input" value="<?php echo $_SESSION['username'] ?>" name="oldusername"/>
                 </div>
-    			
+
     			<div class="mdui-textfield mdui-textfield-floating-label">
-                  <label class="mdui-textfield-label">提问者</label>
-                  <input class="mdui-textfield-input" value="'.$creator.'" name="asker" disabled/>
+                  <label class="mdui-textfield-label">新用户名</label>
+                  <input class="mdui-textfield-input" value="" name="newusername"/>
                 </div>
                 
                 <div class="mdui-textfield mdui-textfield-floating-label">
-                  <label class="mdui-textfield-label">问题</label>
-                  <input class="mdui-textfield-input" value="'.$question.'" name="question" disabled/>
+                  <label class="mdui-textfield-label">新密码</label>
+                  <input class="mdui-textfield-input" value="" name="newpasswd"/>
                 </div>
                 
                 <div class="mdui-textfield mdui-textfield-floating-label">
-                  <label class="mdui-textfield-label">回答</label>
-                  <input class="mdui-textfield-input" value="'.$answer.'" name="answer"/>
+                  <label class="mdui-textfield-label">确认新密码</label>
+                  <input class="mdui-textfield-input" value="" name="verifiedpasswd"/>
                 </div>
                 
-    			<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">回答</button>
-			</form>');
-			if($asked == '20')echo ("<h2>抱歉,你没有提供问题ID</h2>");
-			if($asked !='1' && $asked !='20')
-			 echo ("<h2>抱歉,找不到该问题</h2>");
-			?>
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                  <label class="mdui-textfield-label">确认旧密码</label>
+                  <input class="mdui-textfield-input" value="" name="oldpasswd"/>
+                </div>
+
+    			<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">添加</button>
+			</form>
 			
 		</div>
 		<script>
@@ -179,4 +141,5 @@ else $asked = '20';
 			(orientation:landscape) and (max-width:959px){.dictumanchor{top:-48px!important}}
 		</style>
 	</body>
+
 </html>
